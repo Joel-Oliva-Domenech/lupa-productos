@@ -1,0 +1,14 @@
+node_modules/
+dist/
+/.agents/
+/AGENTS.md
+.npm-cache/
+.pnpm-store/
+.bootstrap-lupa-019f760f/
+.vite/
+coverage/
+*.log
+/.preview*.log
+.DS_Store
+design-qa-screenshots/*.png
+!design-qa-screenshots/.gitkeep
