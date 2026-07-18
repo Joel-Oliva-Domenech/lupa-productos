@@ -48,6 +48,33 @@ y después:
 - iPhone o iPad: en Safari, pulsa Compartir y después “Añadir a pantalla de inicio”.
 - Cuando el navegador lo permite, Lupa también muestra su propio botón “Instalar Lupa”.
 
+## Aplicaciones de escritorio
+
+**[Descargar Lupa para Windows o macOS](https://github.com/Joel-Oliva-Domenech/lupa-productos/releases/latest)**
+
+| Sistema | Archivo recomendado |
+| --- | --- |
+| Windows 10/11 de 64 bits | `Lupa-Setup-…-Windows-x64.exe` |
+| Windows sin instalación | `Lupa-Portable-…-Windows-x64.exe` |
+| Mac con Apple Silicon (M1 o posterior) | `Lupa-…-macOS-arm64.dmg` |
+| Mac Intel | `Lupa-…-macOS-x64.dmg` |
+
+### Windows
+
+1. Descarga el instalador `Setup` y ejecútalo.
+2. Elige la carpeta de instalación y los accesos directos.
+3. También puedes usar la edición `Portable`, que no necesita instalación.
+
+### macOS
+
+1. Descarga el DMG correspondiente al procesador del Mac.
+2. Abre el DMG y arrastra Lupa a la carpeta Aplicaciones.
+3. En la primera apertura, autoriza el uso de la cámara para escanear códigos.
+
+> Los instaladores iniciales son de código abierto pero todavía no están firmados con
+> certificados comerciales. Windows puede mostrar SmartScreen y macOS puede requerir
+> **Ajustes del Sistema → Privacidad y seguridad → Abrir igualmente**.
+
 ## Desarrollo local
 
 Requisitos: Node.js 20 o superior y pnpm.
@@ -67,9 +94,21 @@ pnpm build
 
 La compilación queda en la carpeta dist y contiene el manifiesto y el service worker.
 
+Para ejecutar o empaquetar la aplicación de escritorio:
+
+~~~bash
+pnpm desktop
+pnpm desktop:smoke
+pnpm desktop:dist:win
+pnpm desktop:dist:mac:x64
+pnpm desktop:dist:mac:arm64
+~~~
+
+
 ## Arquitectura
 
 - React y Vite para la interfaz.
+- Electron y electron-builder para las aplicaciones de Windows y macOS.
 - ZXing Browser para detectar EAN/UPC/GTIN.
 - Open Food Facts API v3 para los datos colaborativos.
 - vite-plugin-pwa y Workbox para instalación y caché.

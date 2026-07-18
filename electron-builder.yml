@@ -1,0 +1,77 @@
+appId: io.github.joelolivadomenech.lupa
+productName: Lupa
+copyright: Copyright © 2026 Joel Oliva
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/**/*
+  - electron/**/*
+  - package.json
+
+asar: true
+npmRebuild: false
+compression: normal
+
+electronFuses:
+  runAsNode: false
+  enableCookieEncryption: true
+  enableNodeOptionsEnvironmentVariable: false
+  enableNodeCliInspectArguments: false
+  enableEmbeddedAsarIntegrityValidation: true
+  onlyLoadAppFromAsar: true
+  loadBrowserProcessSpecificV8Snapshot: false
+  grantFileProtocolExtraPrivileges: false
+
+win:
+  executableName: Lupa
+  icon: icon.png
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+
+nsis:
+  artifactName: Lupa-Setup-${version}-Windows-${arch}.${ext}
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Lupa
+  uninstallDisplayName: Lupa
+
+portable:
+  artifactName: Lupa-Portable-${version}-Windows-${arch}.${ext}
+
+mac:
+  identity: null
+  hardenedRuntime: false
+  notarize: false
+  category: public.app-category.lifestyle
+  minimumSystemVersion: 13.0.0
+  icon: icon.png
+  target:
+    - dmg
+  extendInfo:
+    NSCameraUsageDescription: Lupa necesita la cámara únicamente para leer códigos de barras.
+
+dmg:
+  artifactName: Lupa-${version}-macOS-${arch}.${ext}
+  title: Lupa ${version}
+  backgroundColor: "#f2ebdd"
+  iconSize: 96
+  contents:
+    - x: 140
+      y: 220
+      type: file
+    - x: 400
+      y: 220
+      type: link
+      path: /Applications
